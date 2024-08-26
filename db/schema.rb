@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_25_170447) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_25_233540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,28 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_25_170447) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "plots", force: :cascade do |t|
+    t.float "value"
+    t.integer "number"
+    t.integer "status"
+    t.date "payment_date"
+    t.bigint "sale_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sale_id"], name: "index_plots_on_sale_id"
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.float "value"
+    t.float "fees"
+    t.date "due_date"
+    t.bigint "customer_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_sales_on_customer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.integer "type"
@@ -48,4 +70,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_25_170447) do
   end
 
   add_foreign_key "addresses", "customers"
+  add_foreign_key "plots", "sales"
+  add_foreign_key "sales", "customers"
 end

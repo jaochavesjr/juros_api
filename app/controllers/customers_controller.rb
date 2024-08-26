@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
   end
 
   def index
-    @customer = Customer.all
+    @customers = Customer.all
   end
 
   def create
