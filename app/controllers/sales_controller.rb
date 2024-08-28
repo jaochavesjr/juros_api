@@ -9,6 +9,7 @@ class SalesController < ApplicationController
 
   def index
     @sales = Sale.all
+    render json: @sales, status: :ok
   end
 
   def create
