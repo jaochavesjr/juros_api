@@ -9,7 +9,7 @@ class SalesController < ApplicationController
 
   def index
     @sales = Sale.all
-    render json: @sales, status: :ok
+    render json: @sales.to_json(include: :plots), status: :ok
   end
 
   def create
@@ -26,7 +26,7 @@ class SalesController < ApplicationController
 
   def update
     if @sale.update(sale_params)
-      render json: @sale, status: :ok
+      render json: @sale.to_json(include: :plots), status: :ok
     else
       render json: { errors: @sale.errors.full_messages }, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class SalesController < ApplicationController
 
 
   def show
-    render json: @sale, status: :ok
+    render json: @sale.to_json(include: :plots), status: :ok
   end
 
   private
