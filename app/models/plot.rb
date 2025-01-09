@@ -3,6 +3,7 @@ class Plot < ApplicationRecord
   enum :status, [ :open, :paid_off, :archived ]
 
   def create_new_plot
+    new_number = self.number + 1
     return if self.paid_off? || self.sale.plots.where(number: new_number).exists? || self.status != "open"
 
     Plot.create!(value: calc_percent, status: :open, payment_date: Date.current,
