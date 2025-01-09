@@ -7,7 +7,9 @@ RSpec.describe Plot, type: :model do
 
   describe '#create_new_plot' do
     it 'creates a new plot with updated attributes' do
+      Plot.skip_callback(:update, :after, :create_new_plot)
       expect { plot.create_new_plot }.to change { Plot.count }.by(1)
+      Plot.set_callback(:update, :after, :create_new_plot)
       new_plot = Plot.last
       expect(new_plot.value).to eq(plot.calc_percent)
       expect(new_plot.number).to eq(plot.number + 1)
