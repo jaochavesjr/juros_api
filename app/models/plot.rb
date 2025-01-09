@@ -1,7 +1,6 @@
 class Plot < ApplicationRecord
   belongs_to :sale
   enum status: { open: 0, paid_off: 1, archived: 2 }
-  after_update :create_new_plot, if: :paid_off?
 
   def create_new_plot
     Plot.create!(value: calc_percent, status: :open, payment_date: Date.current,

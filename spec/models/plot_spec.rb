@@ -6,13 +6,6 @@ RSpec.describe Plot, type: :model do
   let(:plot) { Plot.create(value: 10.0, number: 1, status: :open, sale: sale) }
 
   describe '#create_new_plot' do
-    before do
-      Plot.skip_callback(:update, :after, :create_new_plot)
-    end
-
-    after do
-      Plot.set_callback(:update, :after, :create_new_plot)
-    end
 
     it 'creates a new plot with updated attributes' do
       expect { plot.create_new_plot }.to change { Plot.count }.by(1)
