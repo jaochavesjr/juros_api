@@ -9,6 +9,10 @@ RSpec.describe Plot, type: :model do
     allow(plot).to receive(:create_new_plot).and_call_original
   end
 
+  before do
+    allow(plot).to receive(:create_new_plot).and_call_original
+  end
+
   describe '#create_new_plot' do
 
     it 'creates a new plot with updated attributes' do
