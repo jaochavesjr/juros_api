@@ -9,11 +9,11 @@ class Plot < ApplicationRecord
                  number: new_number, sale: self.sale)
   end
 
+  private
+
   def calc_percent
     (self.sale.fees / 100) * self.sale.value
   end
-
-  private
 
   def paid_off?
     saved_change_to_status? && status == "paid_off"

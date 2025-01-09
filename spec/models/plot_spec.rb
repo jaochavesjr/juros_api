@@ -18,7 +18,8 @@ RSpec.describe Plot, type: :model do
     it 'creates a new plot with updated attributes' do
       expect { plot.create_new_plot }.to change { Plot.count }.by(1)
       new_plot = Plot.last
-      expect(new_plot.value).to eq(plot.calc_percent)
+      expected_value = (plot.sale.fees / 100) * plot.sale.value
+      expect(new_plot.value).to eq(expected_value)
       expect(new_plot.number).to eq(plot.number + 1)
       expect(new_plot.status).to eq('open')
       expect(new_plot.sale).to eq(plot.sale)
