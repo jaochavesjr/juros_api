@@ -9,8 +9,10 @@ class Sale < ApplicationRecord
   public
 
   def create_initial_plot
+    return if plots.exists?(number: 1)
+
     Plot.create!(value: calc_percent, status: 0, payment_date: nil,
-    number: 1, sale: self)
+                 number: 1, sale: self)
   end
 
   def calc_percent
