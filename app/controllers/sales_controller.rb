@@ -2,7 +2,7 @@
 
 # controller do Sale
 class SalesController < ApplicationController
-  before_action :set_sale, only: %i[show edit]
+  before_action :set_sale, only: %i[show edit update]
   def new
     @sale = Sale.new
   end
@@ -21,8 +21,7 @@ class SalesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @sale.update(sale_params)

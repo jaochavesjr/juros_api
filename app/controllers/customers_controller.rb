@@ -22,8 +22,7 @@ class CustomersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @customer.update(customer_params)

@@ -2,8 +2,7 @@
 
 class PlotsController < ApplicationController
   before_action :set_plots, only: %i[edit update]
-  def edit
-  end
+  def edit; end
 
   def update
     if @plot.update(status: 1, payment_date: Date.current)
