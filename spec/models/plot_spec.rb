@@ -13,6 +13,7 @@ RSpec.describe Plot, type: :model do
       expect(new_plot.number).to eq(plot.number + 1)
       expect(new_plot.status).to eq('open')
       expect(new_plot.sale).to eq(plot.sale)
+      expect(new_plot.payment_date).to eq(Date.current)
     end
   end
 end
