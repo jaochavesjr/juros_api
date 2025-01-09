@@ -1,6 +1,6 @@
 class Plot < ApplicationRecord
   belongs_to :sale
-  enum :status, [:open, :paid_off, :archived]
+  enum :status, [ :open, :paid_off, :archived ]
 
   def create_new_plot
     return if self.paid_off? || self.sale.plots.where(number: new_number).exists? || self.status != "open"
