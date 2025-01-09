@@ -1,6 +1,6 @@
 class Plot < ApplicationRecord
   belongs_to :sale
-  enum status: { open: 0, paid_off: 1, archived: 2 }
+  enum status: [ :open, :paid_off, :archived ]
 
   def create_new_plot
     Plot.create!(value: calc_percent, status: :open, payment_date: Date.current,
@@ -10,7 +10,7 @@ class Plot < ApplicationRecord
   private
 
   def paid_off?
-    saved_change_to_status? && status == 'paid_off'
+    saved_change_to_status? && status == "paid_off"
   end
 
   def new_number
