@@ -14,9 +14,9 @@ RSpec.describe Sale, type: :model do
     it { should define_enum_for(:status).with_values([:open, :paid_off, :archived]) }
   end
 
-  describe '#create_plot' do
+  describe '#create_initial_plot' do
     it 'creates a plot associated with the sale' do
-      expect { sale.create_plot }.to change { Plot.count }.by(1)
+      expect { sale.create_initial_plot }.to change { Plot.count }.by(1)
     end
   end
 
