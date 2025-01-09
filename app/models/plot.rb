@@ -11,7 +11,7 @@ class Plot < ApplicationRecord
   private
 
   def paid_off?
-    saved_change_to_status? && paid_off?
+    saved_change_to_status? && status == 'paid_off'
   end
 
   def new_number
