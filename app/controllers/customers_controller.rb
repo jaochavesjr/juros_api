@@ -26,15 +26,14 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
-      render json: @customer.to_json(include: :address), status: :ok
+      render json: @customer, include: :address, status: :ok
     else
       render json: { errors: @customer.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
-
   def show
-    render json: @customer, status: :ok
+    render json: @customer, include: :address, status: :ok
   end
 
   private

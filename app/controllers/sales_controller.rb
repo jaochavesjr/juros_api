@@ -8,14 +8,13 @@ class SalesController < ApplicationController
   end
 
   def index
-    @sales = Sale.all
-    render json: @sales.to_json(include: :plots), status: :ok
+    render json: Sale.includes(:plots).all, status: :ok
   end
 
   def create
     @sale = Sale.new(sale_params)
     if @sale.save
-      render json: @sale.to_json(include: :plots), status: :created
+      render json: @sale, include: :plots, status: :created
     else
       render json: { errors: @sale.errors.full_messages }, status: :unprocessable_entity
     end
