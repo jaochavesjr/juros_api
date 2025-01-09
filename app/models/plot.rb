@@ -9,17 +9,13 @@ class Plot < ApplicationRecord
                  number: new_number, sale: self.sale)
   end
 
-  private
+  def create_plot
+    # implementation
+  end
 
   def calc_percent
-    (self.sale.fees / 100) * self.sale.value
+    # implementation
   end
 
-  def paid_off?
-    saved_change_to_status? && status == "paid_off"
-  end
-
-  def new_number
-    self.number + 1
-  end
+  private
 end
