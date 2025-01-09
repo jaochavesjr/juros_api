@@ -12,6 +12,7 @@ RSpec.describe Plot, type: :model do
       expect(new_plot.value).to eq(plot.calc_percent)
       expect(new_plot.number).to eq(plot.number + 1)
       expect(new_plot.status).to eq('open')
+      expect(new_plot.sale).to eq(plot.sale)
     end
   end
 end
