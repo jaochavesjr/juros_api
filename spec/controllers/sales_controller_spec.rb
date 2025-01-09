@@ -4,6 +4,10 @@ RSpec.describe SalesController, type: :controller do
   let(:customer) { Customer.create(name: "Test Customer", cpf: "123456789") }
   let(:sale) { Sale.create(value: 100.0, fees: 10.0, due_date: Date.today, status: :open, customer: customer) }
 
+  before do
+    allow(controller).to receive(:authenticate_request).and_return(true)
+  end
+
   describe "GET #index" do
     it "returns a success response" do
       get :index
