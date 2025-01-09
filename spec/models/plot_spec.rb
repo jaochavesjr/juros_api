@@ -5,9 +5,9 @@ RSpec.describe Plot, type: :model do
   let(:sale) { Sale.create(value: 100.0, fees: 10.0, due_date: Date.today, status: :open, customer: customer) }
   let(:plot) { Plot.create(value: 10.0, number: 1, status: :open, sale: sale) }
 
-  describe '#update_plot' do
+  describe '#create_new_plot' do
     it 'creates a new plot with updated attributes' do
-      expect { plot.update(status: :paid_off) }.to change { Plot.count }.by(1)
+      expect { plot.create_new_plot }.to change { Plot.count }.by(1)
       new_plot = Plot.last
       expect(new_plot.value).to eq(plot.calc_percent)
       expect(new_plot.number).to eq(plot.number + 1)
