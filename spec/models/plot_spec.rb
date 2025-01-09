@@ -5,6 +5,10 @@ RSpec.describe Plot, type: :model do
   let(:sale) { Sale.create(value: 100.0, fees: 10.0, due_date: Date.today, status: :open, customer: customer) }
   let(:plot) { Plot.create(value: 10.0, number: 1, status: :open, sale: sale) }
 
+  before do
+    allow(plot).to receive(:create_new_plot).and_call_original
+  end
+
   describe '#create_new_plot' do
 
     it 'creates a new plot with updated attributes' do
