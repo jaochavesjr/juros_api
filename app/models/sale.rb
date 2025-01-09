@@ -4,11 +4,11 @@ class Sale < ApplicationRecord
   enum status: { open: 0, paid_off: 1, archived: 2 }
   validates :value, presence: true
   validates :due_date, presence: true
-  after_create :create_plot
+  after_create :create_initial_plot
 
   public
 
-  def create_plot
+  def create_initial_plot
     Plot.create!(value: calc_percent, status: 0, payment_date: nil,
     number: 1, sale: self)
   end

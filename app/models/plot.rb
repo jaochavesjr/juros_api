@@ -6,7 +6,7 @@ class Plot < ApplicationRecord
     new_number = self.number + 1
     return if self.paid_off? || self.sale.plots.where(number: new_number).exists? || self.status != "open"
 
-    Plot.create!(value: calc_percent, status: :open, payment_date: Date.current,
+    Plot.create!(value: self.sale.calc_percent, status: :open, payment_date: Date.current,
                  number: new_number, sale: self.sale)
   end
 
