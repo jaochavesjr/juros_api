@@ -9,6 +9,10 @@ class Plot < ApplicationRecord
                  number: new_number, sale: self.sale)
   end
 
+  def calc_percent
+    (self.sale.fees / 100) * self.sale.value
+  end
+
   private
 
   def paid_off?
@@ -17,9 +21,5 @@ class Plot < ApplicationRecord
 
   def new_number
     self.number + 1
-  end
-
-  def calc_percent
-    (self.sale.fees/ 100) * self.sale.value
   end
 end
