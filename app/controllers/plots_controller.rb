@@ -5,7 +5,7 @@ class PlotsController < ApplicationController
   def edit; end
 
   def update
-    if @plot.update(status: 1, payment_date: Date.current)
+    if @plot.update(status: :paid_off, payment_date: Date.current)
       render json: @plot, status: :ok
     else
       render json: { errors: @plot.errors.full_messages }, status: :unprocessable_entity
